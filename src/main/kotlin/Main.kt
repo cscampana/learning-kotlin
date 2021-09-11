@@ -22,6 +22,22 @@ fun main() {
     printNumbers(numberToPrint = 5) // or printNumbers(5)
     stringTemplate("Caike")
     templateSingleExpression("Caike","Campana")
+
+    /**
+     * Collections and Iterations
+     */
+
+    // Array
+    val niceNumbers = arrayOf(2,3,4,5,6,7,8,9,10)
+
+    println(niceNumbers.size)
+    println(niceNumbers[0])
+    println(niceNumbers.get(0))
+
+    for(number in niceNumbers){
+        println(number)
+    }
+
 }
 
 fun variables(){
