@@ -8,10 +8,12 @@ interface MathematicianInfo {
     }
 }
 interface MathSessionProvide {
-    fun getMathNumber() : String
+    fun getMathNumber() : Int
 }
-// How to implement the interface
-class ImplementedMathematician : MathematicianInfo, MathSessionProvide{
+// How to implement the interface (use the open keyword to allow it to be extended)
+open class ImplementedMathematician : MathematicianInfo, MathSessionProvide{
+    // Need to add the open key to properties too.
+    protected open val numericalMath = 12334
     // You must override!
     override val mathematicianInfo: String
         get() = "Mathematician info"
@@ -19,11 +21,11 @@ class ImplementedMathematician : MathematicianInfo, MathSessionProvide{
     // You must use the keyword override.
     override fun printInfo(mathematician: Mathematician) {
         super.printInfo(mathematician)
-        println("It works!")
+        println(mathematicianInfo)
     }
 
-    override fun getMathNumber(): String {
-        return "1234"
+    override fun getMathNumber(): Int {
+        return numericalMath
     }
 }
 // Type check using the keyword is
@@ -38,7 +40,7 @@ fun checkTypes(mathInfo : ImplementedMathematician){
 }
 
 fun main(){
-    val currentMathematician = ImplementedMathematician()
+    val currentMathematician = FancyMath()
     currentMathematician.printInfo(Mathematician())
     currentMathematician.getMathNumber()
     checkTypes(currentMathematician)
