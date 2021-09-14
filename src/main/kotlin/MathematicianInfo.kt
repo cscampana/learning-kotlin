@@ -40,8 +40,14 @@ fun checkTypes(mathInfo : ImplementedMathematician){
 }
 
 fun main(){
-    val currentMathematician = FancyMath()
+    // Anonymous class implementation (Object expression)
+    val currentMathematician = object : ImplementedMathematician() {
+        override val mathematicianInfo : String
+            get() = "New Math"
+    }
     currentMathematician.printInfo(Mathematician())
     currentMathematician.getMathNumber()
     checkTypes(currentMathematician)
+
+
 }
