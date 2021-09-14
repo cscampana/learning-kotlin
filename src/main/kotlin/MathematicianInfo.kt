@@ -26,9 +26,20 @@ class ImplementedMathematician : MathematicianInfo, MathSessionProvide{
         return "1234"
     }
 }
+// Type check using the keyword is
+fun checkTypes(mathInfo : ImplementedMathematician){
+    // Use !is to check not.
+    if(mathInfo is MathSessionProvide ){
+        println("true")
+        (mathInfo as MathSessionProvide )
+    } else {
+        println("false")
+    }
+}
 
 fun main(){
     val currentMathematician = ImplementedMathematician()
     currentMathematician.printInfo(Mathematician())
     currentMathematician.getMathNumber()
+    checkTypes(currentMathematician)
 }
