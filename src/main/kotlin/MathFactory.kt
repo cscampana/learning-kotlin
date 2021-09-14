@@ -56,6 +56,7 @@ sealed class Entity(){
     object Help : Entity() {
         val name = "help"
     }
+    // Concise and immutable data types. Generate equals, hashcode, toString automatically
     data class Easy(val id: String, val name: String) : Entity()
     data class Medium(val id: String, val name: String) : Entity()
     data class Hard(val id: String, val name: String, val multiplier: Float) : Entity()
@@ -79,6 +80,13 @@ class EntityNotSealed  constructor(val id: String, val name: String){
         return "id:$id, name:$name"
     }
 }
+// Class/property extension outside of its body.
+fun Entity.Medium.printInfo(){
+    println("Medium class $id")
+}
+// Extending fields
+val Entity.Medium.info: String
+    get() = "Some Info"
 
 fun main(){
     val entity = EntityNotSealed.Factory.create()
@@ -106,5 +114,31 @@ fun main(){
     }
 
     println(msg)
+
+    //Data Class in-depth
+    val entity1 = EntityFactory3.create(EntityTypeWithHelp.EASY)
+    val entity2 = EntityFactory3.create(EntityTypeWithHelp.EASY)
+    if(entity1 == entity2){ // They will not be equal since we have different Ids
+        println("equal")
+    } else{
+        println("not equal")
+    }
+
+    val entity3 = Entity.Easy("1","a")
+    val entity4 = Entity.Easy("1","a")
+    if(entity3 == entity4){ // They will  be equal since we have same Ids
+        println("equal")
+    } else{
+        println("not equal")
+    }
+
+    val entity5 = entity4.copy() // you can copy data classes directly
+    val entity6 = entity4.copy("4","b") // you can even change the values.
+
+    // === is a referential equality
+
+    //Class extension and property extension
+    Entity.Medium("id", "name").printInfo()
+    println(Entity.Medium("id", "name").info)
 
 }
