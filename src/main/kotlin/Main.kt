@@ -75,6 +75,20 @@ fun main() {
 
     // Function with a list in the parameters
     collectionFunction("Hi", listOf("Euler", "Tao", "Newton", "Ramanujan"))
+
+    /**
+     * Classes
+     */
+
+    val mathematician = Mathematician("Leonhard", "Euler")
+    // Access the property, no need for getters or setter.
+    mathematician.firstName
+    mathematician.nickName = "Best"
+    mathematician.nickName = "Genius"
+    println(mathematician.nickName)
+    // Secondary constructor
+    val unknownMath = Mathematician()
+
 }
 
 fun variables() {
@@ -162,4 +176,9 @@ fun templateSingleExpression(firstName: String, lastName: String) = println(
 // Using collections as parameters
 fun collectionFunction(greeting: String, people: List<String>) {
     people.forEach { person -> println("$greeting, $person") }
+}
+
+// Vararg arguments - variable number of arguments
+fun mathematiciansVariable(greeting: String, vararg mathematicians: String){
+    mathematicians.forEach { mathematician -> println("$greeting, $mathematician") }
 }
